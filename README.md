@@ -38,10 +38,63 @@ const defaultConfig = {
 
 ## 快速使用
 
+1、安装
+
+```bash
+# npm
+npm i @bszhct/driver
+
+# yarn
+yarn add @bszhct/driver
+```
+
+2、引入
+
+```js
+import Vue from 'vue'
+import Driver from '@bszhct/driver'
+
+Vue.use(Driver)
+```
+
+3、使用
+
+```vue
+<template>
+  <div>
+    <a-button id="driver-btn" type="primary" @click="onOpenDriver()">新手引导</a-button>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    onOpenDriver () {
+      const driver = this.$shepherd({
+        steps: [{
+          attachTo: {
+            element: document.querySelector('#driver-btn'),
+            on: 'auto'
+          },
+          title: '新手引导',
+          text: '这里是新手引导提示内容，这里是新手引导提示内容，这里是新手引导提示内容，这里是新手引导提示内容。',
+          buttons: [{
+            action () {
+              return this.complete()
+            },
+            text: '关闭'
+          }]
+        }]
+      })
+        .start()
+    }
+  }
+}
+</script>
+```
 
 
-
-### 开发
+## 开发
 
 ```bash
 # 启动开发环境
